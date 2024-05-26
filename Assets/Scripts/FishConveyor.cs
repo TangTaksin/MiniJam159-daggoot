@@ -6,8 +6,32 @@ public class FishConveyor : MonoBehaviour
 {
     public Vector3 conveyorDirection = Vector3.left;
 
+    bool gameInSession = false;
+
     List<Rigidbody> onConveyourList = new List<Rigidbody>();
     List<Rigidbody> toBeRemove = new List<Rigidbody>();
+
+    private void OnEnable()
+    {
+        Clock.StartEvent += StartConveyor;
+        //Clock.OverEvent += StopConveyor;
+    }
+
+    private void OnDisable()
+    {
+        Clock.StartEvent -= StartConveyor;
+        //Clock.OverEvent -= StopConveyor;
+    }
+
+    void StartConveyor()
+    {
+        gameInSession = true;
+    }
+
+    void StopConveyor()
+    {
+        gameInSession = false;
+    }
 
     void CheckForNull()
     {
@@ -42,7 +66,7 @@ public class FishConveyor : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (onConveyourList.Count > 0)
+        if (onConveyourList.Count > 0 && gameInSession)
         {
             foreach (var rb in onConveyourList)
             {

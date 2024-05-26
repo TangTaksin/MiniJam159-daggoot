@@ -6,6 +6,7 @@ using UnityEngine;
 public class FishMass : MonoBehaviour
 {
     [SerializeField] float mass;
+    [SerializeField] int scoreMultiplier = 1;
     [SerializeField] int dullValue = 5;
     [SerializeField] Material xSectionMat;
     float finalMass;
@@ -38,9 +39,19 @@ public class FishMass : MonoBehaviour
         return xSectionMat;
     }
 
+    public void SetXMat(Material mat)
+    {
+        xSectionMat = mat;
+    }
+
     public int GetDull()
     {
         return dullValue;
+    }
+
+    public int GetMultiplier()
+    {
+        return scoreMultiplier;
     }
 
     void CalculateMass()
