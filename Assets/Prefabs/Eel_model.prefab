@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 25
+  dullValue: 1
   xSectionMat: {fileID: 0}
 --- !u!54 &4885080705725591909
 Rigidbody:

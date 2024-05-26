@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MiniJam159.sln"
+    "dotnet.defaultSolution": "MiniJam159-daggoot.sln"
 }

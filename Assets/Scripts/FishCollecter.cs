@@ -10,7 +10,7 @@ public class FishCollecter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject, 3);
+        Destroy(other.gameObject, 1);
         var fM = other.GetComponent<FishMass>();
         AddScore(fM.GetFinalMass(), fM.GetMass());
     }
