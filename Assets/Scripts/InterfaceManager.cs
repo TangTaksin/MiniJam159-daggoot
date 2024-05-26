@@ -8,6 +8,7 @@ public class InterfaceManager : MonoBehaviour
     public GameObject GameplayInterface;
     public GameObject TitleInterface;
     public GameObject ResultInterface;
+    public GameObject logoGame;
 
     enum screen { title, gameplay, result}
     screen curScreen = screen.title;
@@ -35,6 +36,7 @@ public class InterfaceManager : MonoBehaviour
 
     public void toGameplay()
     {
+        logoGame.SetActive(false);
         curScreen = screen.gameplay;
 
         GameplayInterface?.SetActive(true);

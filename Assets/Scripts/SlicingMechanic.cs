@@ -54,7 +54,7 @@ public class SlicingMechanic : MonoBehaviour
         SharpnessImage.fillAmount = sharpColor;
         SharpnessImage.color = SharpnessGradient.Evaluate(sharpColor);
 
-        
+
     }
 
     IEnumerator RefillGuage()
@@ -81,7 +81,7 @@ public class SlicingMechanic : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !sharpening)
         {
-            
+
 
             if (curSharpness <= 0)
             {
@@ -92,18 +92,20 @@ public class SlicingMechanic : MonoBehaviour
 
                 return;
             }
-            
+
             // ui slice anim
             uiAnimator.Play("chop");
             // play slice sfx here 
-            AudioManager.Instance.PlaySliceSFX();
 
 
-            var hit = Physics.OverlapBox(transform.position, new Vector3(10, 10f, 10), transform.rotation, sliceableMask);
+
+            var hit = Physics.OverlapBox(transform.position, new Vector3(2, 0.1f, 2), transform.rotation, sliceableMask);
+            print(hit.Length);
 
             if (hit.Length > 0)
             {
-                
+                AudioManager.Instance.PlaySliceSFX();
+
                 foreach (var col in hit)
                 {
                     var fMass = col.GetComponent<FishMass>();
@@ -130,7 +132,7 @@ public class SlicingMechanic : MonoBehaviour
                         var u_Col = upperHull.AddComponent<BoxCollider>();
 
                         var u_Rb = upperHull.AddComponent<Rigidbody>();
-                        u_Rb.AddForce(Vector3.left*2, ForceMode.Impulse);
+                        u_Rb.AddForce(Vector3.left * 2, ForceMode.Impulse);
 
                         var u_Mass = upperHull.AddComponent<FishMass>();
                         u_Mass.SetMass(fMass.GetMass());
@@ -141,8 +143,12 @@ public class SlicingMechanic : MonoBehaviour
 
                 }
             }
-            //miss penelty
-            curSharpness -= missPenelty;
+            else if (hit.Length <= 0)
+            {   //miss penelty
+                curSharpness -= missPenelty;
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.noKnife);
+            }
+
 
         }
     }
