@@ -38,6 +38,7 @@ public class SlicingMechanic : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !sharpening)
         {
             StartCoroutine(RefillGuage());
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.knifeRain);
         }
 
         if (sharpening)
@@ -76,6 +77,7 @@ public class SlicingMechanic : MonoBehaviour
 
             if (hit.Length > 0)
             {
+                AudioManager.Instance.PlaySliceSFX();
                 foreach (var col in hit)
                 {
                     var fMass = col.GetComponent<FishMass>();
