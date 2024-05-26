@@ -8,10 +8,18 @@ public class FishSpawner : MonoBehaviour
     public GameObject[] spawnPool;
 
     float timer;
+    bool gameInSession = false;
 
-    private void Start()
+    private void OnEnable()
     {
-        timer = spawnRate;
+        Clock.StartEvent += StartSpawn;
+        Clock.OverEvent += StopSpawn;
+    }
+
+    private void OnDisable()
+    {
+        Clock.StartEvent -= StartSpawn;
+        Clock.OverEvent -= StopSpawn;
     }
 
     void Spawn()
@@ -23,14 +31,29 @@ public class FishSpawner : MonoBehaviour
         }
     }
 
+    void StartSpawn()
+    {
+        timer = spawnRate;
+        gameInSession = true;
+    }
+
+    void StopSpawn()
+    {
+        gameInSession = false;
+    }
+
+
     private void Update()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
+        if (gameInSession)
         {
-            Spawn();
-            timer = spawnRate;
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                Spawn();
+                timer = spawnRate;
+            }
         }
     }
 }
