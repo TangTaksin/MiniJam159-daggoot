@@ -8,7 +8,7 @@ public class SlicingMechanic : MonoBehaviour
 {
     public LayerMask sliceableMask;
     public float maxSharpness = 100;
-
+    public float missPenelty = 10;
     public float sharpenTime = 2;
     float sharpTimer = 0;
 
@@ -141,6 +141,9 @@ public class SlicingMechanic : MonoBehaviour
 
                 }
             }
+            //miss penelty
+            curSharpness -= missPenelty;
+
         }
     }
 }
