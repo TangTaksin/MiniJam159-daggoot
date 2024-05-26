@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Slice.unity
-    guid: 4e77b6a27cd73274da163efcf369aa12
+    path: Assets/Scenes/Slice Backup.unity
+    guid: 53a43293cea40fb4f8c212926d2906ef
   m_configObjects: {}

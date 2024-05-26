@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 260
+  scoreMultiplier: 25
+  dullValue: 5
   xSectionMat: {fileID: 2100000, guid: ca120b08236619443a13da0fcef81f49, type: 2}
 --- !u!54 &3813178089445762314
 Rigidbody:

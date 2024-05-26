@@ -88,6 +88,7 @@ public class SlicingMechanic : MonoBehaviour
                 // notify dullness
                 uiAnimator.Play("dull");
                 // Play dull sfx here 
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.noKnife);
 
                 return;
             }
@@ -95,13 +96,14 @@ public class SlicingMechanic : MonoBehaviour
             // ui slice anim
             uiAnimator.Play("chop");
             // play slice sfx here 
+            AudioManager.Instance.PlaySliceSFX();
 
 
             var hit = Physics.OverlapBox(transform.position, new Vector3(10, 10f, 10), transform.rotation, sliceableMask);
 
             if (hit.Length > 0)
             {
-                AudioManager.Instance.PlaySliceSFX();
+                
                 foreach (var col in hit)
                 {
                     var fMass = col.GetComponent<FishMass>();

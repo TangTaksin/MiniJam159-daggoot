@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 12
-  scoreMultiplier: 1
-  dullValue: 5
+  scoreMultiplier: 10
+  dullValue: 40
   xSectionMat: {fileID: 2100000, guid: ca120b08236619443a13da0fcef81f49, type: 2}
 --- !u!65 &4286792758417415648
 BoxCollider:

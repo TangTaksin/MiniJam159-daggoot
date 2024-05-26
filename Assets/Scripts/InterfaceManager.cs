@@ -48,6 +48,7 @@ public class InterfaceManager : MonoBehaviour
 
     public void toResult()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.timeOut);
         curScreen = screen.result;
 
         ResultInterface?.SetActive(true);
