@@ -20,6 +20,8 @@ public class SlicingMechanic : MonoBehaviour
 
     bool sharpening;
 
+    public Vector3 boxHalfExtents = new Vector3(2, .5f, 2);
+
     Camera cam;
 
     private void Start()
@@ -35,6 +37,7 @@ public class SlicingMechanic : MonoBehaviour
 
     public void Update()
     {
+        Rotate();
         SliceAndSplit();
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && !sharpening)
@@ -99,7 +102,7 @@ public class SlicingMechanic : MonoBehaviour
 
 
 
-            var hit = Physics.OverlapBox(transform.position, new Vector3(2, 0.1f, 2), transform.rotation, sliceableMask);
+            var hit = Physics.OverlapBox(transform.position, boxHalfExtents, transform.rotation, sliceableMask);
             print(hit.Length);
 
             if (hit.Length > 0)
@@ -128,7 +131,9 @@ public class SlicingMechanic : MonoBehaviour
                             b_Mass.SetXMat(fMass.GetXMat());
                         }
 
+
                         GameObject upperHull = hull.CreateUpperHull(col.gameObject, fMass.GetXMat());
+                        upperHull.layer = 7;
                         var u_Col = upperHull.AddComponent<BoxCollider>();
 
                         var u_Rb = upperHull.AddComponent<Rigidbody>();
@@ -152,4 +157,24 @@ public class SlicingMechanic : MonoBehaviour
 
         }
     }
+
+    public void Rotate()
+    {
+        var mouseInput = Input.GetAxis("Mouse X");
+        transform.Rotate(new Vector3(0, mouseInput, 0));
+    }
+
+    void OnDrawGizmos()
+    {
+        // Set the color for the Gizmos
+        Gizmos.color = Color.red;
+
+        // Calculate the box center
+        Vector3 boxCenter = transform.position;
+
+        // Draw the box
+        Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, boxHalfExtents * 2); // Gizmos.DrawWireCube needs full size, so we multiply by 2
+    }
+
 }

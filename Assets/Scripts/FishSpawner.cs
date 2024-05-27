@@ -27,7 +27,9 @@ public class FishSpawner : MonoBehaviour
         if (spawnPool.Length > 0)
         {
             var r = Random.Range(0, spawnPool.Length);
-            Instantiate(spawnPool[r], transform.position, transform.rotation);
+            var fishRotate = Random.Range(0f, 360f);
+            Instantiate(spawnPool[r], transform.position, Quaternion.Euler(0, fishRotate, 0));
+
         }
     }
 

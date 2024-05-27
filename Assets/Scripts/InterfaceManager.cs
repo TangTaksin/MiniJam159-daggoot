@@ -26,6 +26,8 @@ public class InterfaceManager : MonoBehaviour
 
     public void toTitle()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         curScreen = screen.title;
 
         TitleInterface?.SetActive(true);
@@ -36,6 +38,8 @@ public class InterfaceManager : MonoBehaviour
 
     public void toGameplay()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         logoGame.SetActive(false);
         curScreen = screen.gameplay;
 
@@ -50,6 +54,8 @@ public class InterfaceManager : MonoBehaviour
 
     public void toResult()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         AudioManager.Instance.PlaySFX(AudioManager.Instance.timeOut);
         curScreen = screen.result;
 
